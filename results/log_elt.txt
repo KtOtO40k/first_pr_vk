@@ -1,0 +1,126 @@
+ Container lh-trino Running 
+ Container lh-catalog-db Running 
+ Container lh-catalog Running 
+ Container lh-minio Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Waiting 
+ Container lh-catalog Healthy 
+ Container lh-minio-init Exited 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-319105653bcd Creating 
+ Container lh-q18-tools-run-319105653bcd Created 
+18:58:05 | Trino отвечает
+18:58:05 | batch_id загрузки: 20261012T185805-89d2ae
+18:58:05 | сессионных свойств каталога lake: 46
+18:58:05 | ===== BRONZE (10_bronze.sql)
+18:58:05 |     0.01 s | CREATE SCHEMA IF NOT EXISTS lake.bronze
+18:58:05 |     0.03 s | DROP TABLE IF EXISTS lake.bronze.region
+18:58:06 |     0.24 s | CREATE TABLE lake.bronze.region WITH (format = 'PARQUET') AS SELECT t.*, '20261012T185805-89d2ae' AS
+18:58:06 |     0.02 s | DROP TABLE IF EXISTS lake.bronze.nation
+18:58:06 |     0.23 s | CREATE TABLE lake.bronze.nation WITH (format = 'PARQUET') AS SELECT t.*, '20261012T185805-89d2ae' AS
+18:58:06 |     0.02 s | DROP TABLE IF EXISTS lake.bronze.customer
+18:58:19 |    13.28 s | CREATE TABLE lake.bronze.customer WITH (format = 'PARQUET') AS SELECT t.*, '20261012T185805-89d2ae' 
+18:58:19 |     0.02 s | DROP TABLE IF EXISTS lake.bronze.orders
+18:58:29 |     9.99 s | CREATE TABLE lake.bronze.orders WITH (format = 'PARQUET') AS SELECT t.*, '20261012T185805-89d2ae' AS
+18:58:29 |     0.02 s | DROP TABLE IF EXISTS lake.bronze.lineitem
+18:59:05 |    36.10 s | CREATE TABLE lake.bronze.lineitem WITH (format = 'PARQUET') AS SELECT t.*, '20261012T185805-89d2ae' 
+18:59:05 | ===== SILVER (20_silver.sql)
+18:59:05 |     0.02 s | CREATE SCHEMA IF NOT EXISTS lake.silver
+18:59:06 |     0.09 s | DROP TABLE IF EXISTS lake.silver.customer_dim
+18:59:13 |     7.64 s | CREATE TABLE lake.silver.customer_dim WITH (format = 'PARQUET') AS WITH ranked AS ( SELECT c.*, row_
+18:59:13 |     0.09 s | DROP TABLE IF EXISTS lake.silver.order_facts
+18:59:50 |    36.74 s | CREATE TABLE lake.silver.order_facts WITH (format = 'PARQUET', sorted_by = ARRAY['total_quantity']) 
+18:59:50 |     0.10 s | DROP TABLE IF EXISTS lake.silver.large_orders
+18:59:51 |     1.20 s | CREATE TABLE lake.silver.large_orders WITH (format = 'PARQUET') AS SELECT f.orderkey, f.custkey, c.c
+18:59:51 | ===== GOLD (30_gold.sql)
+18:59:51 |     0.01 s | CREATE SCHEMA IF NOT EXISTS lake.gold
+18:59:51 |     0.03 s | DROP TABLE IF EXISTS lake.gold.q18_top100
+18:59:52 |     0.40 s | CREATE TABLE lake.gold.q18_top100 WITH (format = 'PARQUET') AS SELECT CAST(row_number() OVER (ORDER 
+18:59:52 |     0.02 s | DROP TABLE IF EXISTS lake.gold.large_orders_by_year_segment
+18:59:55 |     3.33 s | CREATE TABLE lake.gold.large_orders_by_year_segment WITH (format = 'PARQUET') AS SELECT f.order_year
+18:59:55 |     0.04 s | DROP TABLE IF EXISTS lake.gold.order_size_distribution
+18:59:56 |     0.75 s | CREATE TABLE lake.gold.order_size_distribution WITH (format = 'PARQUET') AS WITH b AS ( SELECT CAST(
+18:59:56 | → results/elt_steps.csv (11 строк)
+18:59:58 | bronze.region                                         5 строк       0.00 МБ     ZSTD sort=нет
+18:59:58 | bronze.nation                                        25 строк       0.00 МБ     ZSTD sort=нет
+18:59:59 | bronze.customer                                 600,000 строк      32.65 МБ     ZSTD sort=нет
+18:59:59 | bronze.orders                                 6,000,000 строк     152.53 МБ     ZSTD sort=нет
+18:59:59 | bronze.lineitem                              23,996,604 строк     623.40 МБ     ZSTD sort=нет
+19:00:00 | silver.customer_dim                             600,000 строк      22.77 МБ     ZSTD sort=нет
+19:00:00 | silver.order_facts                            6,000,000 строк     137.10 МБ     ZSTD sort=total_quantity ASC NULLS FIRST
+19:00:00 | silver.large_orders                                 249 строк       0.01 МБ     ZSTD sort=нет
+19:00:00 | gold.q18_top100                                     100 строк       0.00 МБ     ZSTD sort=нет
+19:00:01 | gold.large_orders_by_year_segment                   175 строк       0.00 МБ     ZSTD sort=нет
+19:00:01 | gold.order_size_distribution                         14 строк       0.00 МБ     ZSTD sort=нет
+19:00:01 | → results/layers.csv (11 строк)
+19:00:01 | DQ  bronze.lineitem: строк: 23996604
+19:00:02 | DQ  lineitem: NULL orderkey: 0
+19:00:02 | DQ  lineitem: quantity <= 0: 0
+19:00:02 | DQ  lineitem: extendedprice <= 0: 0
+19:00:03 | DQ  lineitem: discount или tax вне [0;1]: 0
+19:00:05 | DQ  lineitem: позиции без заказа: 0
+19:00:05 | DQ  bronze.orders: строк: 6000000
+19:00:07 | DQ  orders: заказы без позиций: 0
+19:00:07 | DQ  silver.order_facts: строк: 6000000
+19:00:08 | DQ  order_facts: totalprice расходится с суммой позиций: 0
+19:00:08 | DQ  order_facts: макс. |totalprice − charged_amount|: 0.1148
+19:00:09 | DQ  order_facts: макс. |totalprice − charged_amount| на одну позицию: 0.0205
+19:00:15 | DQ  orders: totalprice ≠ сумме позиций по арифметике генератора (усечение до копеек): 0
+19:00:15 | DQ  bronze.customer: строк: 600000
+19:00:15 | DQ  customer: дубли custkey: 0
+19:00:15 | DQ  silver.customer_dim: строк: 600000
+19:00:15 | DQ  customer_dim: без страны: 0
+19:00:16 | DQ  order_facts: заказов с total_quantity > 300: 249
+19:00:16 | DQ  silver.large_orders: строк: 249
+19:00:16 | DQ  order_facts: максимум total_quantity: 328.00
+19:00:16 | → results/dq_checks.csv (20 строк)
+19:00:16 | → results/order_facts_rowgroups.csv (14 строк)
+19:00:16 | Проверка: Q18 напрямую по tpch.sf4
+19:00:28 | → results/gold_q18_top100.csv (100 строк)
+19:00:28 | → results/gold_large_orders_by_year_segment.csv (175 строк)
+19:00:28 | → results/gold_order_size_distribution.csv (14 строк)
+19:00:31 | Проверка: эталон TPC-H Q18 для SF1
+19:00:33 | Gold vs raw: OK; эталон SF1: OK
+19:00:33 | ELT готов. Дальше: tools/iceberg_demo.py, затем ./run_bench.sh
+19:04:56 | → results/order_facts_rowgroups.csv (33 строк)
+19:45:30 | === пересборка Gold (исправлен расчёт долей share_pct / large_share_pct)
+19:45:30 | сессионных свойств каталога lake: 46
+19:45:30 |     0.02 s | CREATE SCHEMA IF NOT EXISTS lake.gold
+19:45:31 |     0.08 s | DROP TABLE IF EXISTS lake.gold.q18_top100
+19:45:31 |     0.57 s | CREATE TABLE lake.gold.q18_top100 WITH (format = 'PARQUET') AS SELECT CAST(row_number() OVER (ORDER 
+19:45:31 |     0.05 s | DROP TABLE IF EXISTS lake.gold.large_orders_by_year_segment
+19:45:34 |     2.61 s | CREATE TABLE lake.gold.large_orders_by_year_segment WITH (format = 'PARQUET') AS SELECT f.order_year
+19:45:34 |     0.05 s | DROP TABLE IF EXISTS lake.gold.order_size_distribution
+19:45:34 |     0.38 s | CREATE TABLE lake.gold.order_size_distribution WITH (format = 'PARQUET') AS WITH b AS ( SELECT CAST(
+19:45:34 | → results/elt_steps.csv (11 строк)
+19:45:35 | bronze.region                                         5 строк       0.00 МБ     ZSTD sort=нет
+19:45:35 | bronze.nation                                        25 строк       0.00 МБ     ZSTD sort=нет
+19:45:35 | bronze.customer                                 600,000 строк      32.65 МБ     ZSTD sort=нет
+19:45:35 | bronze.orders                                 6,000,000 строк     152.53 МБ     ZSTD sort=нет
+19:45:36 | bronze.lineitem                              23,996,604 строк     623.40 МБ     ZSTD sort=нет
+19:45:36 | silver.customer_dim                             600,000 строк      22.77 МБ     ZSTD sort=нет
+19:45:36 | silver.order_facts                            6,000,000 строк     137.10 МБ     ZSTD sort=total_quantity ASC NULLS FIRST
+19:45:36 | silver.large_orders                                 249 строк       0.01 МБ     ZSTD sort=нет
+19:45:36 | gold.q18_top100                                     100 строк       0.00 МБ     ZSTD sort=нет
+19:45:36 | gold.large_orders_by_year_segment                   175 строк       0.00 МБ     ZSTD sort=нет
+19:45:36 | gold.order_size_distribution                         14 строк       0.00 МБ     ZSTD sort=нет
+19:45:37 | → results/layers.csv (11 строк)
+19:45:37 | Проверка: Q18 напрямую по tpch.sf4
+19:45:47 | → results/gold_q18_top100.csv (100 строк)
+19:45:47 | → results/gold_large_orders_by_year_segment.csv (175 строк)
+19:45:47 | → results/gold_order_size_distribution.csv (14 строк)
+19:45:49 | Проверка: эталон TPC-H Q18 для SF1
+19:45:51 | Gold vs raw: OK; эталон SF1: OK

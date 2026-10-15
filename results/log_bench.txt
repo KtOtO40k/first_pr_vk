@@ -1,0 +1,561 @@
+=== запись PARQUET:NONE
+ Container lh-trino Running 
+ Container lh-catalog Running 
+ Container lh-minio Running 
+ Container lh-catalog-db Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Exited 
+ Container lh-catalog Healthy 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-55f001485445 Creating 
+ Container lh-q18-tools-run-55f001485445 Created 
+19:05:39 | масштаб sf4; вариантов 1; записей 3; чтений 5
+19:05:39 | [1/1] запись PARQUET+NONE
+19:05:39 | сессионных свойств каталога lake: 46
+19:05:41 | [PARQUET+NONE] запись customer #1:    2.4 s, CPU    3.5 s
+19:05:50 | [PARQUET+NONE] запись orders   #1:    8.5 s, CPU   35.6 s
+19:06:25 | [PARQUET+NONE] запись lineitem #1:   34.8 s, CPU  187.9 s
+19:06:46 | → results/bench/storage_log.csv (1 строк)
+19:06:46 | бакет: 3,066 -> 3,066 МБ за 20 с
+19:06:50 | [PARQUET+NONE] запись customer #2:    4.2 s, CPU    3.7 s
+19:07:01 | [PARQUET+NONE] запись orders   #2:   10.1 s, CPU   35.8 s
+19:07:33 | [PARQUET+NONE] запись lineitem #2:   32.4 s, CPU  190.9 s
+19:07:53 | → results/bench/storage_log.csv (2 строк)
+19:07:53 | бакет: 3,066 -> 3,066 МБ за 20 с
+19:07:57 | [PARQUET+NONE] запись customer #3:    3.8 s, CPU    3.9 s
+19:08:08 | [PARQUET+NONE] запись orders   #3:   10.3 s, CPU   37.7 s
+19:08:40 | [PARQUET+NONE] запись lineitem #3:   32.4 s, CPU  195.1 s
+19:08:40 | → results/bench/bm_parquet_none_writes.csv (9 строк)
+19:08:41 | → results/bench/bm_parquet_none_sizes.csv (3 строк)
+19:08:41 | [PARQUET+NONE] Bronze 2,095.1 МБ; кодек в файле lineitem: UNCOMPRESSED
+19:09:02 | → results/bench/storage_log.csv (3 строк)
+19:09:02 | бакет: 3,066 -> 3,066 МБ за 20 с
+19:09:02 | прошло 3.4 мин
+/mnt/docker-desktop-disk: 4.4 GiB (4740923392 bytes) trimmed on /dev/sdd
+/parent-distro: 0 B (0 bytes) trimmed on /dev/sde
+=== запись PARQUET:SNAPPY
+ Container lh-minio Running 
+ Container lh-trino Running 
+ Container lh-catalog-db Running 
+ Container lh-catalog Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Exited 
+ Container lh-catalog Healthy 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-e720aab7ef74 Creating 
+ Container lh-q18-tools-run-e720aab7ef74 Created 
+19:09:09 | масштаб sf4; вариантов 1; записей 3; чтений 5
+19:09:09 | [1/1] запись PARQUET+SNAPPY
+19:09:10 | сессионных свойств каталога lake: 46
+19:09:17 | [PARQUET+SNAPPY] запись customer #1:    6.6 s, CPU    4.8 s
+19:09:26 | [PARQUET+SNAPPY] запись orders   #1:    9.4 s, CPU   35.6 s
+19:09:55 | [PARQUET+SNAPPY] запись lineitem #1:   28.9 s, CPU  193.9 s
+19:10:17 | → results/bench/storage_log.csv (4 строк)
+19:10:17 | бакет: 4,181 -> 4,181 МБ за 20 с
+19:10:26 | [PARQUET+SNAPPY] запись customer #2:    8.8 s, CPU    5.2 s
+19:10:37 | [PARQUET+SNAPPY] запись orders   #2:   11.5 s, CPU   37.1 s
+19:11:07 | [PARQUET+SNAPPY] запись lineitem #2:   29.7 s, CPU  198.7 s
+19:11:28 | → results/bench/storage_log.csv (5 строк)
+19:11:28 | бакет: 4,181 -> 4,181 МБ за 20 с
+19:11:35 | [PARQUET+SNAPPY] запись customer #3:    7.0 s, CPU    5.1 s
+19:11:43 | [PARQUET+SNAPPY] запись orders   #3:    8.2 s, CPU   35.7 s
+19:12:13 | [PARQUET+SNAPPY] запись lineitem #3:   29.6 s, CPU  196.9 s
+19:12:13 | → results/bench/bm_parquet_snappy_writes.csv (9 строк)
+19:12:14 | → results/bench/bm_parquet_snappy_sizes.csv (3 строк)
+19:12:14 | [PARQUET+SNAPPY] Bronze 1,115.2 МБ; кодек в файле lineitem: SNAPPY
+19:12:34 | → results/bench/storage_log.csv (6 строк)
+19:12:34 | бакет: 4,181 -> 4,181 МБ за 20 с
+19:12:34 | прошло 3.4 мин
+/mnt/docker-desktop-disk: 61.6 MiB (64634880 bytes) trimmed on /dev/sdd
+/parent-distro: 0 B (0 bytes) trimmed on /dev/sde
+=== запись PARQUET:GZIP
+ Container lh-trino Running 
+ Container lh-minio Running 
+ Container lh-catalog Running 
+ Container lh-catalog-db Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Exited 
+ Container lh-catalog Healthy 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-7feb1cd1671e Creating 
+ Container lh-q18-tools-run-7feb1cd1671e Created 
+19:12:41 | масштаб sf4; вариантов 1; записей 3; чтений 5
+19:12:41 | [1/1] запись PARQUET+GZIP
+19:12:41 | сессионных свойств каталога lake: 46
+19:12:59 | [PARQUET+GZIP] запись customer #1:   17.9 s, CPU   10.4 s
+19:13:17 | [PARQUET+GZIP] запись orders   #1:   17.7 s, CPU   56.8 s
+19:13:57 | [PARQUET+GZIP] запись lineitem #1:   40.3 s, CPU  295.5 s
+19:14:18 | → results/bench/storage_log.csv (7 строк)
+19:14:18 | бакет: 4,970 -> 4,970 МБ за 20 с
+19:14:25 | [PARQUET+GZIP] запись customer #2:    6.6 s, CPU    8.0 s
+19:14:41 | [PARQUET+GZIP] запись orders   #2:   16.1 s, CPU   55.0 s
+19:15:20 | [PARQUET+GZIP] запись lineitem #2:   39.4 s, CPU  290.7 s
+19:15:41 | → results/bench/storage_log.csv (8 строк)
+19:15:41 | бакет: 4,970 -> 4,970 МБ за 20 с
+19:15:47 | [PARQUET+GZIP] запись customer #3:    6.7 s, CPU    8.0 s
+19:16:03 | [PARQUET+GZIP] запись orders   #3:   16.0 s, CPU   55.1 s
+19:16:44 | [PARQUET+GZIP] запись lineitem #3:   40.2 s, CPU  294.6 s
+19:16:44 | → results/bench/bm_parquet_gzip_writes.csv (9 строк)
+19:16:45 | → results/bench/bm_parquet_gzip_sizes.csv (3 строк)
+19:16:45 | [PARQUET+GZIP] Bronze 788.0 МБ; кодек в файле lineitem: GZIP
+19:17:05 | → results/bench/storage_log.csv (9 строк)
+19:17:05 | бакет: 4,970 -> 4,970 МБ за 20 с
+19:17:05 | прошло 4.4 мин
+/mnt/docker-desktop-disk: 2.5 GiB (2698260480 bytes) trimmed on /dev/sdd
+/parent-distro: 0 B (0 bytes) trimmed on /dev/sde
+=== запись PARQUET:ZSTD
+ Container lh-trino Running 
+ Container lh-catalog-db Running 
+ Container lh-catalog Running 
+ Container lh-minio Running 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Starting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Exited 
+ Container lh-catalog Healthy 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-0fe957199b48 Creating 
+ Container lh-q18-tools-run-0fe957199b48 Created 
+19:17:11 | масштаб sf4; вариантов 1; записей 3; чтений 5
+19:17:11 | [1/1] запись PARQUET+ZSTD
+19:17:11 | сессионных свойств каталога lake: 46
+19:17:16 | [PARQUET+ZSTD] запись customer #1:    4.7 s, CPU    4.9 s
+19:17:25 | [PARQUET+ZSTD] запись orders   #1:    8.7 s, CPU   37.2 s
+19:17:52 | [PARQUET+ZSTD] запись lineitem #1:   27.7 s, CPU  195.7 s
+19:18:14 | → results/bench/storage_log.csv (10 строк)
+19:18:14 | бакет: 5,779 -> 5,779 МБ за 20 с
+19:18:20 | [PARQUET+ZSTD] запись customer #2:    6.3 s, CPU    4.9 s
+19:18:29 | [PARQUET+ZSTD] запись orders   #2:    9.3 s, CPU   36.1 s
+19:19:00 | [PARQUET+ZSTD] запись lineitem #2:   30.2 s, CPU  201.1 s
+19:19:20 | → results/bench/storage_log.csv (11 строк)
+19:19:20 | бакет: 5,779 -> 5,779 МБ за 20 с
+19:19:26 | [PARQUET+ZSTD] запись customer #3:    6.2 s, CPU    5.9 s
+19:19:35 | [PARQUET+ZSTD] запись orders   #3:    8.6 s, CPU   36.2 s
+19:20:05 | [PARQUET+ZSTD] запись lineitem #3:   29.6 s, CPU  210.1 s
+19:20:05 | → results/bench/bm_parquet_zstd_writes.csv (9 строк)
+19:20:06 | → results/bench/bm_parquet_zstd_sizes.csv (3 строк)
+19:20:06 | [PARQUET+ZSTD] Bronze 808.4 МБ; кодек в файле lineitem: ZSTD
+19:20:26 | → results/bench/storage_log.csv (12 строк)
+19:20:26 | бакет: 5,779 -> 5,779 МБ за 20 с
+19:20:26 | прошло 3.3 мин
+/mnt/docker-desktop-disk: 1.9 GiB (2040508416 bytes) trimmed on /dev/sdd
+/parent-distro: 0 B (0 bytes) trimmed on /dev/sde
+=== запись ORC:NONE
+ Container lh-catalog-db Running 
+ Container lh-trino Running 
+ Container lh-minio Running 
+ Container lh-catalog Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Waiting 
+ Container lh-minio-init Exited 
+ Container lh-catalog Healthy 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-3219dd047edd Creating 
+ Container lh-q18-tools-run-3219dd047edd Created 
+19:20:34 | масштаб sf4; вариантов 1; записей 3; чтений 5
+19:20:34 | [1/1] запись ORC+NONE
+19:20:34 | сессионных свойств каталога lake: 46
+19:20:47 | [ORC+NONE] запись customer #1:   13.1 s, CPU    7.1 s
+19:20:58 | [ORC+NONE] запись orders   #1:   11.0 s, CPU   35.9 s
+19:21:31 | [ORC+NONE] запись lineitem #1:   32.8 s, CPU  197.5 s
+19:21:52 | → results/bench/storage_log.csv (13 строк)
+19:21:52 | бакет: 8,110 -> 8,110 МБ за 20 с
+19:21:56 | [ORC+NONE] запись customer #2:    3.9 s, CPU    3.8 s
+19:22:06 | [ORC+NONE] запись orders   #2:    9.3 s, CPU   33.7 s
+19:22:38 | [ORC+NONE] запись lineitem #2:   32.5 s, CPU  195.7 s
+19:22:59 | → results/bench/storage_log.csv (14 строк)
+19:22:59 | бакет: 8,110 -> 8,110 МБ за 20 с
+19:23:04 | [ORC+NONE] запись customer #3:    4.4 s, CPU    4.0 s
+19:23:13 | [ORC+NONE] запись orders   #3:    8.9 s, CPU   33.1 s
+19:23:46 | [ORC+NONE] запись lineitem #3:   33.3 s, CPU  196.3 s
+19:23:46 | → results/bench/bm_orc_none_writes.csv (9 строк)
+19:23:47 | → results/bench/bm_orc_none_sizes.csv (3 строк)
+19:23:47 | [ORC+NONE] Bronze 2,330.7 МБ; кодек в файле lineitem: UNCOMPRESSED
+19:24:07 | → results/bench/storage_log.csv (15 строк)
+19:24:07 | бакет: 8,110 -> 8,110 МБ за 20 с
+19:24:07 | прошло 3.6 мин
+/mnt/docker-desktop-disk: 6.9 GiB (7364202496 bytes) trimmed on /dev/sdd
+/parent-distro: 0 B (0 bytes) trimmed on /dev/sde
+=== запись ORC:SNAPPY
+ Container lh-trino Running 
+ Container lh-minio Running 
+ Container lh-catalog Running 
+ Container lh-catalog-db Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Exited 
+ Container lh-catalog Healthy 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-4314e5a2d5a0 Creating 
+ Container lh-q18-tools-run-4314e5a2d5a0 Created 
+19:24:14 | масштаб sf4; вариантов 1; записей 3; чтений 5
+19:24:14 | [1/1] запись ORC+SNAPPY
+19:24:14 | сессионных свойств каталога lake: 46
+19:24:17 | [ORC+SNAPPY] запись customer #1:    3.1 s, CPU    3.4 s
+19:24:27 | [ORC+SNAPPY] запись orders   #1:    9.7 s, CPU   34.0 s
+19:24:59 | [ORC+SNAPPY] запись lineitem #1:   31.8 s, CPU  193.9 s
+19:25:20 | → results/bench/storage_log.csv (16 строк)
+19:25:20 | бакет: 9,259 -> 9,259 МБ за 20 с
+19:25:25 | [ORC+SNAPPY] запись customer #2:    4.1 s, CPU    3.5 s
+19:25:33 | [ORC+SNAPPY] запись orders   #2:    8.6 s, CPU   34.9 s
+19:26:03 | [ORC+SNAPPY] запись lineitem #2:   29.2 s, CPU  193.9 s
+19:26:24 | → results/bench/storage_log.csv (17 строк)
+19:26:24 | бакет: 9,259 -> 9,259 МБ за 20 с
+19:26:27 | [ORC+SNAPPY] запись customer #3:    3.2 s, CPU    3.4 s
+19:26:36 | [ORC+SNAPPY] запись orders   #3:    8.6 s, CPU   34.9 s
+19:27:04 | [ORC+SNAPPY] запись lineitem #3:   28.3 s, CPU  189.7 s
+19:27:04 | → results/bench/bm_orc_snappy_writes.csv (9 строк)
+19:27:05 | → results/bench/bm_orc_snappy_sizes.csv (3 строк)
+19:27:05 | [ORC+SNAPPY] Bronze 1,148.0 МБ; кодек в файле lineitem: SNAPPY
+19:27:25 | → results/bench/storage_log.csv (18 строк)
+19:27:25 | бакет: 9,259 -> 9,259 МБ за 20 с
+19:27:25 | прошло 3.2 мин
+/mnt/docker-desktop-disk: 67.6 MiB (70901760 bytes) trimmed on /dev/sdd
+/parent-distro: 0 B (0 bytes) trimmed on /dev/sde
+=== запись ORC:GZIP
+ Container lh-trino Running 
+ Container lh-minio Running 
+ Container lh-catalog Running 
+ Container lh-catalog-db Running 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Starting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Healthy 
+ Container lh-minio-init Exited 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-c0779eed33ea Creating 
+ Container lh-q18-tools-run-c0779eed33ea Created 
+19:27:32 | масштаб sf4; вариантов 1; записей 3; чтений 5
+19:27:32 | [1/1] запись ORC+GZIP
+19:27:32 | сессионных свойств каталога lake: 46
+19:27:37 | [ORC+GZIP] запись customer #1:    4.8 s, CPU    5.5 s
+19:27:48 | [ORC+GZIP] запись orders   #1:   11.3 s, CPU   39.9 s
+19:28:25 | [ORC+GZIP] запись lineitem #1:   36.8 s, CPU  272.5 s
+19:28:47 | → results/bench/storage_log.csv (19 строк)
+19:28:47 | бакет: 10,068 -> 10,068 МБ за 20 с
+19:28:55 | [ORC+GZIP] запись customer #2:    7.9 s, CPU    6.1 s
+19:29:07 | [ORC+GZIP] запись orders   #2:   12.3 s, CPU   43.1 s
+19:29:42 | [ORC+GZIP] запись lineitem #2:   34.0 s, CPU  248.5 s
+19:30:02 | → results/bench/storage_log.csv (20 строк)
+19:30:02 | бакет: 10,068 -> 10,068 МБ за 20 с
+19:30:09 | [ORC+GZIP] запись customer #3:    6.8 s, CPU    5.5 s
+19:30:20 | [ORC+GZIP] запись orders   #3:   10.8 s, CPU   40.8 s
+19:30:54 | [ORC+GZIP] запись lineitem #3:   34.1 s, CPU  249.7 s
+19:30:54 | → results/bench/bm_orc_gzip_writes.csv (9 строк)
+19:30:56 | → results/bench/bm_orc_gzip_sizes.csv (3 строк)
+19:30:56 | [ORC+GZIP] Bronze 808.8 МБ; кодек в файле lineitem: ZLIB
+19:31:16 | → results/bench/storage_log.csv (21 строк)
+19:31:16 | бакет: 10,068 -> 10,068 МБ за 20 с
+19:31:16 | прошло 3.7 мин
+/mnt/docker-desktop-disk: 2.5 GiB (2687107072 bytes) trimmed on /dev/sdd
+/parent-distro: 0 B (0 bytes) trimmed on /dev/sde
+=== запись ORC:ZSTD
+ Container lh-trino Running 
+ Container lh-minio Running 
+ Container lh-catalog-db Running 
+ Container lh-catalog Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Waiting 
+ Container lh-minio-init Exited 
+ Container lh-catalog Healthy 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-85babfdb334a Creating 
+ Container lh-q18-tools-run-85babfdb334a Created 
+19:31:23 | масштаб sf4; вариантов 1; записей 3; чтений 5
+19:31:23 | [1/1] запись ORC+ZSTD
+19:31:23 | сессионных свойств каталога lake: 46
+19:31:27 | [ORC+ZSTD] запись customer #1:    3.4 s, CPU    4.1 s
+19:31:37 | [ORC+ZSTD] запись orders   #1:    9.9 s, CPU   37.0 s
+19:32:05 | [ORC+ZSTD] запись lineitem #1:   28.4 s, CPU  201.7 s
+19:32:26 | → results/bench/storage_log.csv (22 строк)
+19:32:26 | бакет: 10,900 -> 10,900 МБ за 20 с
+19:32:29 | [ORC+ZSTD] запись customer #2:    3.2 s, CPU    4.3 s
+19:32:39 | [ORC+ZSTD] запись orders   #2:    9.3 s, CPU   35.5 s
+19:33:10 | [ORC+ZSTD] запись lineitem #2:   30.8 s, CPU  207.7 s
+19:33:30 | → results/bench/storage_log.csv (23 строк)
+19:33:30 | бакет: 10,900 -> 10,900 МБ за 20 с
+19:33:34 | [ORC+ZSTD] запись customer #3:    3.4 s, CPU    4.5 s
+19:33:42 | [ORC+ZSTD] запись orders   #3:    8.4 s, CPU   35.6 s
+19:34:10 | [ORC+ZSTD] запись lineitem #3:   28.1 s, CPU  203.5 s
+19:34:10 | → results/bench/bm_orc_zstd_writes.csv (9 строк)
+19:34:11 | → results/bench/bm_orc_zstd_sizes.csv (3 строк)
+19:34:11 | [ORC+ZSTD] Bronze 830.6 МБ; кодек в файле lineitem: ZSTD
+19:34:32 | → results/bench/storage_log.csv (24 строк)
+19:34:32 | бакет: 10,900 -> 10,900 МБ за 20 с
+19:34:32 | прошло 3.1 мин
+/mnt/docker-desktop-disk: 3 GiB (3236315136 bytes) trimmed on /dev/sdd
+/parent-distro: 0 B (0 bytes) trimmed on /dev/sde
+=== генератор, чтение всех вариантов, сортировка Silver
+ Container lh-catalog Running 
+ Container lh-catalog-db Running 
+ Container lh-trino Running 
+ Container lh-minio Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Exited 
+ Container lh-catalog Healthy 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-464ccbe307ac Creating 
+ Container lh-q18-tools-run-464ccbe307ac Created 
+19:34:39 | масштаб sf4; вариантов 8; записей 3; чтений 5
+19:34:41 | генерация tpch.sf4.customer #1:    1.7 s
+19:34:43 | генерация tpch.sf4.customer #2:    1.8 s
+19:34:43 | генерация tpch.sf4.customer #3:    0.7 s
+19:34:49 | генерация tpch.sf4.orders   #1:    5.9 s
+19:34:54 | генерация tpch.sf4.orders   #2:    4.6 s
+19:34:58 | генерация tpch.sf4.orders   #3:    4.3 s
+19:35:21 | генерация tpch.sf4.lineitem #1:   22.7 s
+19:35:42 | генерация tpch.sf4.lineitem #2:   21.6 s
+19:36:04 | генерация tpch.sf4.lineitem #3:   21.3 s
+19:36:04 | → results/bench/generator.csv (9 строк)
+19:36:10 | [PARQUET+NONE] Q18       прогрев:   5.74 s, прочитано    533.8 МБ
+19:36:11 | [PARQUET+NONE] TEXT_SCAN прогрев:   1.86 s, прочитано    759.8 МБ
+19:36:14 | [PARQUET+SNAPPY] Q18       прогрев:   3.04 s, прочитано    230.0 МБ
+19:36:16 | [PARQUET+SNAPPY] TEXT_SCAN прогрев:   1.26 s, прочитано    333.1 МБ
+19:36:18 | [PARQUET+GZIP] Q18       прогрев:   2.62 s, прочитано    139.8 МБ
+19:36:20 | [PARQUET+GZIP] TEXT_SCAN прогрев:   1.32 s, прочитано    219.6 МБ
+19:36:22 | [PARQUET+ZSTD] Q18       прогрев:   2.60 s, прочитано    129.0 МБ
+19:36:23 | [PARQUET+ZSTD] TEXT_SCAN прогрев:   1.06 s, прочитано    233.3 МБ
+19:36:27 | [ORC+NONE] Q18       прогрев:   3.73 s, прочитано    554.7 МБ
+19:36:29 | [ORC+NONE] TEXT_SCAN прогрев:   1.74 s, прочитано    899.5 МБ
+19:36:32 | [ORC+SNAPPY] Q18       прогрев:   3.50 s, прочитано    249.3 МБ
+19:36:33 | [ORC+SNAPPY] TEXT_SCAN прогрев:   1.04 s, прочитано    342.0 МБ
+19:36:36 | [ORC+GZIP] Q18       прогрев:   2.96 s, прочитано    169.6 МБ
+19:36:38 | [ORC+GZIP] TEXT_SCAN прогрев:   1.23 s, прочитано    223.5 МБ
+19:36:41 | [ORC+ZSTD] Q18       прогрев:   3.07 s, прочитано    175.9 МБ
+19:36:42 | [ORC+ZSTD] TEXT_SCAN прогрев:   1.13 s, прочитано    231.5 МБ
+19:36:45 | [ORC+GZIP] Q18       раунд 1:   3.09 s, прочитано    169.6 МБ
+19:36:47 | [ORC+GZIP] TEXT_SCAN раунд 1:   1.70 s, прочитано    223.5 МБ
+19:36:50 | [ORC+ZSTD] Q18       раунд 1:   3.32 s, прочитано    175.9 МБ
+19:36:51 | [ORC+ZSTD] TEXT_SCAN раунд 1:   1.38 s, прочитано    231.5 МБ
+19:36:54 | [PARQUET+ZSTD] Q18       раунд 1:   2.95 s, прочитано    129.0 МБ
+19:36:56 | [PARQUET+ZSTD] TEXT_SCAN раунд 1:   1.45 s, прочитано    233.3 МБ
+19:36:59 | [PARQUET+NONE] Q18       раунд 1:   2.92 s, прочитано    533.8 МБ
+19:37:00 | [PARQUET+NONE] TEXT_SCAN раунд 1:   1.48 s, прочитано    759.8 МБ
+19:37:03 | [ORC+SNAPPY] Q18       раунд 1:   2.93 s, прочитано    249.3 МБ
+19:37:04 | [ORC+SNAPPY] TEXT_SCAN раунд 1:   1.17 s, прочитано    342.0 МБ
+19:37:08 | [ORC+NONE] Q18       раунд 1:   3.70 s, прочитано    554.7 МБ
+19:37:12 | [ORC+NONE] TEXT_SCAN раунд 1:   3.83 s, прочитано    899.5 МБ
+19:37:17 | [PARQUET+GZIP] Q18       раунд 1:   4.47 s, прочитано    139.8 МБ
+19:37:18 | [PARQUET+GZIP] TEXT_SCAN раунд 1:   1.74 s, прочитано    219.6 МБ
+19:37:21 | [PARQUET+SNAPPY] Q18       раунд 1:   3.16 s, прочитано    230.0 МБ
+19:37:23 | [PARQUET+SNAPPY] TEXT_SCAN раунд 1:   1.70 s, прочитано    333.1 МБ
+19:37:26 | [ORC+SNAPPY] Q18       раунд 2:   2.76 s, прочитано    249.3 МБ
+19:37:27 | [ORC+SNAPPY] TEXT_SCAN раунд 2:   0.99 s, прочитано    342.0 МБ
+19:37:29 | [PARQUET+GZIP] Q18       раунд 2:   2.53 s, прочитано    139.8 МБ
+19:37:31 | [PARQUET+GZIP] TEXT_SCAN раунд 2:   1.27 s, прочитано    219.6 МБ
+19:37:34 | [PARQUET+NONE] Q18       раунд 2:   2.98 s, прочитано    533.8 МБ
+19:37:35 | [PARQUET+NONE] TEXT_SCAN раунд 2:   1.36 s, прочитано    759.8 МБ
+19:37:38 | [PARQUET+SNAPPY] Q18       раунд 2:   2.55 s, прочитано    230.0 МБ
+19:37:39 | [PARQUET+SNAPPY] TEXT_SCAN раунд 2:   1.36 s, прочитано    333.1 МБ
+19:37:42 | [PARQUET+ZSTD] Q18       раунд 2:   2.59 s, прочитано    129.0 МБ
+19:37:43 | [PARQUET+ZSTD] TEXT_SCAN раунд 2:   1.07 s, прочитано    233.3 МБ
+19:37:46 | [ORC+NONE] Q18       раунд 2:   3.31 s, прочитано    554.7 МБ
+19:37:48 | [ORC+NONE] TEXT_SCAN раунд 2:   1.51 s, прочитано    899.5 МБ
+19:37:51 | [ORC+GZIP] Q18       раунд 2:   3.17 s, прочитано    169.6 МБ
+19:37:52 | [ORC+GZIP] TEXT_SCAN раунд 2:   1.07 s, прочитано    223.5 МБ
+19:37:55 | [ORC+ZSTD] Q18       раунд 2:   2.96 s, прочитано    175.9 МБ
+19:37:56 | [ORC+ZSTD] TEXT_SCAN раунд 2:   1.02 s, прочитано    231.5 МБ
+19:37:59 | [ORC+NONE] Q18       раунд 3:   2.86 s, прочитано    554.7 МБ
+19:38:01 | [ORC+NONE] TEXT_SCAN раунд 3:   2.11 s, прочитано    899.5 МБ
+19:38:04 | [ORC+ZSTD] Q18       раунд 3:   3.42 s, прочитано    175.9 МБ
+19:38:05 | [ORC+ZSTD] TEXT_SCAN раунд 3:   0.98 s, прочитано    231.5 МБ
+19:38:08 | [ORC+GZIP] Q18       раунд 3:   2.70 s, прочитано    169.6 МБ
+19:38:09 | [ORC+GZIP] TEXT_SCAN раунд 3:   1.23 s, прочитано    223.5 МБ
+19:38:12 | [ORC+SNAPPY] Q18       раунд 3:   2.96 s, прочитано    249.3 МБ
+19:38:13 | [ORC+SNAPPY] TEXT_SCAN раунд 3:   1.12 s, прочитано    342.0 МБ
+19:38:16 | [PARQUET+ZSTD] Q18       раунд 3:   2.60 s, прочитано    129.0 МБ
+19:38:17 | [PARQUET+ZSTD] TEXT_SCAN раунд 3:   1.17 s, прочитано    233.3 МБ
+19:38:20 | [PARQUET+NONE] Q18       раунд 3:   3.10 s, прочитано    533.8 МБ
+19:38:22 | [PARQUET+NONE] TEXT_SCAN раунд 3:   1.59 s, прочитано    759.8 МБ
+19:38:24 | [PARQUET+GZIP] Q18       раунд 3:   2.88 s, прочитано    139.8 МБ
+19:38:26 | [PARQUET+GZIP] TEXT_SCAN раунд 3:   1.26 s, прочитано    219.6 МБ
+19:38:28 | [PARQUET+SNAPPY] Q18       раунд 3:   2.67 s, прочитано    230.0 МБ
+19:38:30 | [PARQUET+SNAPPY] TEXT_SCAN раунд 3:   1.21 s, прочитано    333.1 МБ
+19:38:32 | [PARQUET+NONE] Q18       раунд 4:   2.73 s, прочитано    533.8 МБ
+19:38:34 | [PARQUET+NONE] TEXT_SCAN раунд 4:   1.51 s, прочитано    759.8 МБ
+19:38:37 | [ORC+ZSTD] Q18       раунд 4:   2.95 s, прочитано    175.9 МБ
+19:38:38 | [ORC+ZSTD] TEXT_SCAN раунд 4:   0.88 s, прочитано    231.5 МБ
+19:38:41 | [ORC+GZIP] Q18       раунд 4:   2.95 s, прочитано    169.6 МБ
+19:38:42 | [ORC+GZIP] TEXT_SCAN раунд 4:   0.92 s, прочитано    223.5 МБ
+19:38:45 | [ORC+NONE] Q18       раунд 4:   3.61 s, прочитано    554.7 МБ
+19:38:47 | [ORC+NONE] TEXT_SCAN раунд 4:   1.62 s, прочитано    899.5 МБ
+19:38:50 | [PARQUET+GZIP] Q18       раунд 4:   2.71 s, прочитано    139.8 МБ
+19:38:51 | [PARQUET+GZIP] TEXT_SCAN раунд 4:   1.31 s, прочитано    219.6 МБ
+19:38:53 | [PARQUET+ZSTD] Q18       раунд 4:   2.41 s, прочитано    129.0 МБ
+19:38:54 | [PARQUET+ZSTD] TEXT_SCAN раунд 4:   1.14 s, прочитано    233.3 МБ
+19:38:57 | [PARQUET+SNAPPY] Q18       раунд 4:   2.65 s, прочитано    230.0 МБ
+19:38:58 | [PARQUET+SNAPPY] TEXT_SCAN раунд 4:   1.22 s, прочитано    333.1 МБ
+19:39:01 | [ORC+SNAPPY] Q18       раунд 4:   3.01 s, прочитано    249.3 МБ
+19:39:02 | [ORC+SNAPPY] TEXT_SCAN раунд 4:   0.99 s, прочитано    342.0 МБ
+19:39:06 | [ORC+NONE] Q18       раунд 5:   3.26 s, прочитано    554.7 МБ
+19:39:09 | [ORC+NONE] TEXT_SCAN раунд 5:   2.90 s, прочитано    899.5 МБ
+19:39:12 | [PARQUET+ZSTD] Q18       раунд 5:   3.18 s, прочитано    129.0 МБ
+19:39:13 | [PARQUET+ZSTD] TEXT_SCAN раунд 5:   1.30 s, прочитано    233.3 МБ
+19:39:17 | [ORC+ZSTD] Q18       раунд 5:   3.61 s, прочитано    175.9 МБ
+19:39:18 | [ORC+ZSTD] TEXT_SCAN раунд 5:   1.31 s, прочитано    231.5 МБ
+19:39:21 | [ORC+GZIP] Q18       раунд 5:   2.86 s, прочитано    169.6 МБ
+19:39:22 | [ORC+GZIP] TEXT_SCAN раунд 5:   1.23 s, прочитано    223.5 МБ
+19:39:26 | [PARQUET+NONE] Q18       раунд 5:   4.20 s, прочитано    533.8 МБ
+19:39:28 | [PARQUET+NONE] TEXT_SCAN раунд 5:   1.91 s, прочитано    759.8 МБ
+19:39:31 | [PARQUET+GZIP] Q18       раунд 5:   3.27 s, прочитано    139.8 МБ
+19:39:33 | [PARQUET+GZIP] TEXT_SCAN раунд 5:   1.52 s, прочитано    219.6 МБ
+19:39:37 | [ORC+SNAPPY] Q18       раунд 5:   4.32 s, прочитано    249.3 МБ
+19:39:39 | [ORC+SNAPPY] TEXT_SCAN раунд 5:   1.89 s, прочитано    342.0 МБ
+19:39:44 | [PARQUET+SNAPPY] Q18       раунд 5:   4.34 s, прочитано    230.0 МБ
+19:39:46 | [PARQUET+SNAPPY] TEXT_SCAN раунд 5:   2.15 s, прочитано    333.1 МБ
+19:39:46 | → results/bench/bm_parquet_none_reads.csv (12 строк)
+19:39:46 | → results/bench/bm_parquet_snappy_reads.csv (12 строк)
+19:39:46 | → results/bench/bm_parquet_gzip_reads.csv (12 строк)
+19:39:46 | → results/bench/bm_parquet_zstd_reads.csv (12 строк)
+19:39:46 | → results/bench/bm_orc_none_reads.csv (12 строк)
+19:39:46 | → results/bench/bm_orc_snappy_reads.csv (12 строк)
+19:39:46 | → results/bench/bm_orc_gzip_reads.csv (12 строк)
+19:39:46 | → results/bench/bm_orc_zstd_reads.csv (12 строк)
+19:39:46 | сессионных свойств каталога lake: 46
+19:39:46 | строю order_facts без сортировки
+19:40:20 | → results/bench/unsorted_rowgroups.csv (35 строк)
+19:40:24 | Bronze: исходный Q18 (3 таблицы + подзапрос)   прогрев:   3.95 s, прочитано   133.0 МБ, строк 55,193,457
+19:40:26 | Silver order_facts без сортировки              прогрев:   1.87 s, прочитано    78.6 МБ, строк 7,200,000
+19:40:27 | Silver order_facts, sorted_by total_quantity   прогрев:   0.69 s, прочитано    13.3 МБ, строк 1,938,263
+19:40:27 | Gold: готовая витрина q18_top100               прогрев:   0.07 s, прочитано     0.0 МБ, строк 100
+19:40:27 | Gold: готовая витрина q18_top100               раунд 1:   0.08 s, прочитано     0.0 МБ, строк 100
+19:40:28 | Silver order_facts без сортировки              раунд 1:   1.31 s, прочитано    78.6 МБ, строк 7,200,000
+19:40:32 | Bronze: исходный Q18 (3 таблицы + подзапрос)   раунд 1:   3.99 s, прочитано   133.0 МБ, строк 55,193,457
+19:40:33 | Silver order_facts, sorted_by total_quantity   раунд 1:   0.53 s, прочитано    13.3 МБ, строк 1,938,263
+19:40:33 | Silver order_facts без сортировки              раунд 2:   0.62 s, прочитано    78.6 МБ, строк 7,200,000
+19:40:36 | Bronze: исходный Q18 (3 таблицы + подзапрос)   раунд 2:   3.01 s, прочитано   133.0 МБ, строк 55,193,457
+19:40:37 | Silver order_facts, sorted_by total_quantity   раунд 2:   0.25 s, прочитано    13.3 МБ, строк 1,938,263
+19:40:37 | Gold: готовая витрина q18_top100               раунд 2:   0.04 s, прочитано     0.0 МБ, строк 100
+19:40:39 | Bronze: исходный Q18 (3 таблицы + подзапрос)   раунд 3:   2.51 s, прочитано   133.0 МБ, строк 55,193,457
+19:40:39 | Silver order_facts без сортировки              раунд 3:   0.37 s, прочитано    78.6 МБ, строк 7,200,000
+19:40:40 | Gold: готовая витрина q18_top100               раунд 3:   0.04 s, прочитано     0.0 МБ, строк 100
+19:40:40 | Silver order_facts, sorted_by total_quantity   раунд 3:   0.23 s, прочитано    13.3 МБ, строк 1,938,263
+19:40:40 | Silver order_facts, sorted_by total_quantity   раунд 4:   0.20 s, прочитано    13.3 МБ, строк 1,938,263
+19:40:40 | Gold: готовая витрина q18_top100               раунд 4:   0.04 s, прочитано     0.0 МБ, строк 100
+19:40:42 | Bronze: исходный Q18 (3 таблицы + подзапрос)   раунд 4:   2.29 s, прочитано   133.0 МБ, строк 55,193,457
+19:40:43 | Silver order_facts без сортировки              раунд 4:   0.33 s, прочитано    78.6 МБ, строк 7,200,000
+19:40:45 | Bronze: исходный Q18 (3 таблицы + подзапрос)   раунд 5:   2.25 s, прочитано   133.0 МБ, строк 55,193,457
+19:40:45 | Silver order_facts, sorted_by total_quantity   раунд 5:   0.18 s, прочитано    13.3 МБ, строк 1,938,263
+19:40:45 | Gold: готовая витрина q18_top100               раунд 5:   0.03 s, прочитано     0.0 МБ, строк 100
+19:40:45 | Silver order_facts без сортировки              раунд 5:   0.34 s, прочитано    78.6 МБ, строк 7,200,000
+19:40:45 | → results/bench/layout.csv (24 строк)
+19:40:45 | бенчмарк завершён за 6.1 мин

@@ -1,0 +1,4 @@
+variant,format,codec,table,rows,files,size_bytes,size_mb,codec_in_file,container_in_file,blocks_in_file,checked_file
+ORC+GZIP,ORC,GZIP,customer,600000,1,30333721,30.334,ZLIB,ORC,1,s3://lakehouse/wh/01a13195-a3f9-7813-bbc6-97be523cb22b/customer-1c2bbe4e929d42cb8db03c07ef4b1ecd/data/20261012_193004_00356_3wif2-bae3c56c-bc59-4cbf-b145-2886bd4b3396.orc
+ORC+GZIP,ORC,GZIP,orders,6000000,7,137100102,137.1,ZLIB,ORC,1,s3://lakehouse/wh/01a13195-a3f9-7813-bbc6-97be523cb22b/orders-1d0c4ef1ae624c7c9fa1bd8d4e70ce36/data/20261012_193010_00358_3wif2-66827dbb-a501-4b74-a841-67c0dceda12c.orc
+ORC+GZIP,ORC,GZIP,lineitem,23996604,12,641402132,641.402,ZLIB,ORC,2,s3://lakehouse/wh/01a13195-a3f9-7813-bbc6-97be523cb22b/lineitem-d1f944f164cb4df49fa4d7c9df14eda0/data/20261012_193021_00360_3wif2-4266decd-a3e3-42ec-a4e9-5b1126e519f9.orc

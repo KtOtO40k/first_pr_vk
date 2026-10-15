@@ -1,0 +1,12 @@
+layer,table,rows_written,server_s,client_s,cpu_s,read_mb,rows_processed,peak_mem_mb
+bronze,lake.bronze.region,5,0.237,0.248,0.057,0.0,5,0.0
+bronze,lake.bronze.nation,25,0.234,0.246,0.052,0.0,25,0.0
+bronze,lake.bronze.customer,600000,13.276,13.286,17.852,0.0,600000,52.2
+bronze,lake.bronze.orders,6000000,9.988,9.994,51.71,0.0,6000000,215.4
+bronze,lake.bronze.lineitem,23996604,36.097,36.11,230.169,0.0,23996604,818.9
+silver,lake.silver.customer_dim,600000,7.641,7.698,9.506,22.328,600030,147.4
+silver,lake.silver.order_facts,6000000,36.743,36.756,161.376,261.581,29996604,1365.5
+silver,lake.silver.large_orders,249,1.196,1.209,1.099,14.098,1938263,71.2
+gold,lake.gold.q18_top100,100,0.569,0.577,0.04,0.007,249,0.0
+gold,lake.gold.large_orders_by_year_segment,175,2.613,2.623,16.312,60.772,7200000,178.4
+gold,lake.gold.order_size_distribution,14,0.382,0.392,1.542,3.098,6000000,0.0

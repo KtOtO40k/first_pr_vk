@@ -1,0 +1,25 @@
+case,table,table_files,table_mb,round,warmup,result_rows,server_s,client_s,cpu_s,read_mb,rows_processed,peak_mem_mb
+Bronze: исходный Q18 (3 таблицы + подзапрос),bronze.lineitem,12,623.4,0,True,100,3.948,3.959,15.404,133.003,55193457,385.0
+Silver order_facts без сортировки,bm_layout.order_facts_unsorted,6,133.628,0,True,100,1.87,1.883,4.074,78.624,7200000,63.6
+"Silver order_facts, sorted_by total_quantity",silver.order_facts,6,137.099,0,True,100,0.693,0.704,0.334,13.315,1938263,63.6
+Gold: готовая витрина q18_top100,gold.q18_top100,1,0.004,0,True,100,0.07,0.076,0.004,0.004,100,0.0
+Gold: готовая витрина q18_top100,gold.q18_top100,1,0.004,1,False,100,0.08,0.086,0.006,0.004,100,0.0
+Silver order_facts без сортировки,bm_layout.order_facts_unsorted,6,133.628,1,False,100,1.315,1.319,1.377,78.624,7200000,63.6
+Bronze: исходный Q18 (3 таблицы + подзапрос),bronze.lineitem,12,623.4,1,False,100,3.988,3.994,16.163,133.003,55193457,483.7
+"Silver order_facts, sorted_by total_quantity",silver.order_facts,6,137.099,1,False,100,0.526,0.541,0.292,13.315,1938263,63.6
+Silver order_facts без сортировки,bm_layout.order_facts_unsorted,6,133.628,2,False,100,0.619,0.626,0.94,78.624,7200000,63.6
+Bronze: исходный Q18 (3 таблицы + подзапрос),bronze.lineitem,12,623.4,2,False,100,3.009,3.018,16.787,133.003,55193457,502.0
+"Silver order_facts, sorted_by total_quantity",silver.order_facts,6,137.099,2,False,100,0.25,0.257,0.287,13.315,1938263,48.0
+Gold: готовая витрина q18_top100,gold.q18_top100,1,0.004,2,False,100,0.043,0.049,0.004,0.004,100,0.0
+Bronze: исходный Q18 (3 таблицы + подзапрос),bronze.lineitem,12,623.4,3,False,100,2.512,2.518,16.13,133.003,55193457,441.2
+Silver order_facts без сортировки,bm_layout.order_facts_unsorted,6,133.628,3,False,100,0.374,0.385,1.168,78.624,7200000,63.6
+Gold: готовая витрина q18_top100,gold.q18_top100,1,0.004,3,False,100,0.04,0.048,0.003,0.004,100,0.0
+"Silver order_facts, sorted_by total_quantity",silver.order_facts,6,137.099,3,False,100,0.226,0.233,0.281,13.315,1938263,63.6
+"Silver order_facts, sorted_by total_quantity",silver.order_facts,6,137.099,4,False,100,0.2,0.206,0.279,13.315,1938263,48.0
+Gold: готовая витрина q18_top100,gold.q18_top100,1,0.004,4,False,100,0.037,0.042,0.003,0.004,100,0.0
+Bronze: исходный Q18 (3 таблицы + подзапрос),bronze.lineitem,12,623.4,4,False,100,2.285,2.293,15.547,133.003,55193457,503.6
+Silver order_facts без сортировки,bm_layout.order_facts_unsorted,6,133.628,4,False,100,0.33,0.335,1.036,78.624,7200000,63.6
+Bronze: исходный Q18 (3 таблицы + подзапрос),bronze.lineitem,12,623.4,5,False,100,2.246,2.253,15.767,133.003,55193457,306.5
+"Silver order_facts, sorted_by total_quantity",silver.order_facts,6,137.099,5,False,100,0.184,0.189,0.265,13.315,1938263,63.6
+Gold: готовая витрина q18_top100,gold.q18_top100,1,0.004,5,False,100,0.033,0.038,0.003,0.004,100,0.0
+Silver order_facts без сортировки,bm_layout.order_facts_unsorted,6,133.628,5,False,100,0.337,0.343,1.083,78.624,7200000,63.6

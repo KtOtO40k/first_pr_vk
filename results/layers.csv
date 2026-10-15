@@ -1,0 +1,12 @@
+layer,table,rows,columns,column_list,files,size_bytes,size_mb,format,codec_in_file,row_groups_biggest_file,partitioning,sorted_by
+bronze,lake.bronze.region,5,5,"regionkey, name, comment, _batch_id, _ingested_at",1,1330,0.001,PARQUET,ZSTD,1,нет,нет
+bronze,lake.bronze.nation,25,6,"nationkey, name, regionkey, comment, _batch_id, _ingested_at",1,2345,0.002,PARQUET,ZSTD,1,нет,нет
+bronze,lake.bronze.customer,600000,10,"custkey, name, address, nationkey, phone, acctbal, mktsegment, comment, _batch_id, _ingested_at",2,32646972,32.647,PARQUET,ZSTD,1,нет,нет
+bronze,lake.bronze.orders,6000000,11,"orderkey, custkey, orderstatus, totalprice, orderdate, orderpriority, clerk, shippriority, comment, _batch_id, _ingested_at",9,152530962,152.531,PARQUET,ZSTD,1,нет,нет
+bronze,lake.bronze.lineitem,23996604,18,"orderkey, partkey, suppkey, linenumber, quantity, extendedprice, discount, tax, returnflag, linestatus, shipdate, commitdate, receiptdate, shipinstruct, shipmode, comment, _batch_id, _ingested_at",12,623399561,623.4,PARQUET,ZSTD,1,нет,нет
+silver,lake.silver.customer_dim,600000,8,"custkey, customer_name, address, phone, acctbal, mktsegment, nation_name, region_name",1,22771775,22.772,PARQUET,ZSTD,4,нет,нет
+silver,lake.silver.order_facts,6000000,14,"orderkey, custkey, orderdate, order_year, orderstatus, orderpriority, totalprice, line_count, total_quantity, gross_amount, charged_amount, price_consistent, returned_lines, last_receiptdate",6,137098914,137.099,PARQUET,ZSTD,14,нет,total_quantity ASC NULLS FIRST
+silver,lake.silver.large_orders,249,11,"orderkey, custkey, customer_name, mktsegment, nation_name, region_name, orderdate, order_year, totalprice, total_quantity, line_count",1,7119,0.007,PARQUET,ZSTD,1,нет,нет
+gold,lake.gold.q18_top100,100,9,"top_rank, customer_name, custkey, orderkey, orderdate, totalprice, total_quantity, mktsegment, nation_name",1,3903,0.004,PARQUET,ZSTD,1,нет,нет
+gold,lake.gold.large_orders_by_year_segment,175,8,"order_year, mktsegment, region_name, all_orders, large_orders, large_customers, large_share_pct, large_orders_amount",1,3222,0.003,PARQUET,ZSTD,1,нет,нет
+gold,lake.gold.order_size_distribution,14,6,"qty_from, qty_to, size_bucket, is_large, orders, share_pct",1,1192,0.001,PARQUET,ZSTD,1,нет,нет

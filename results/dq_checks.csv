@@ -1,0 +1,21 @@
+check,value
+bronze.lineitem: строк,23996604
+lineitem: NULL orderkey,0
+lineitem: quantity <= 0,0
+lineitem: extendedprice <= 0,0
+lineitem: discount или tax вне [0;1],0
+lineitem: позиции без заказа,0
+bronze.orders: строк,6000000
+orders: заказы без позиций,0
+silver.order_facts: строк,6000000
+order_facts: totalprice расходится с суммой позиций,0
+order_facts: макс. |totalprice − charged_amount|,0.1148
+order_facts: макс. |totalprice − charged_amount| на одну позицию,0.0205
+orders: totalprice ≠ сумме позиций по арифметике генератора (усечение до копеек),0
+bronze.customer: строк,600000
+customer: дубли custkey,0
+silver.customer_dim: строк,600000
+customer_dim: без страны,0
+order_facts: заказов с total_quantity > 300,249
+silver.large_orders: строк,249
+order_facts: максимум total_quantity,328.00

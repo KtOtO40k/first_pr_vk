@@ -1,0 +1,4 @@
+variant,format,codec,table,rows,files,size_bytes,size_mb,codec_in_file,container_in_file,blocks_in_file,checked_file
+PARQUET+GZIP,PARQUET,GZIP,customer,600000,1,32160734,32.161,GZIP,PARQUET,1,s3://lakehouse/wh/01a13188-0b0a-7530-97e3-073e2b2530b6/customer-63fe8a9bca1d411dafda622643c904b0/data/20261012_191541_00252_3wif2-11c54fd4-b126-4a01-bf55-70e423fb3068.parquet
+PARQUET+GZIP,PARQUET,GZIP,orders,6000000,7,146799720,146.8,GZIP,PARQUET,1,s3://lakehouse/wh/01a13188-0b0a-7530-97e3-073e2b2530b6/orders-0b5a0ad218d24fb291856944606b656d/data/20261012_191548_00254_3wif2-d1e5d92d-6811-4507-9f89-9639e3b92b8f.parquet
+PARQUET+GZIP,PARQUET,GZIP,lineitem,23996604,12,609045452,609.045,GZIP,PARQUET,1,s3://lakehouse/wh/01a13188-0b0a-7530-97e3-073e2b2530b6/lineitem-99af532950a04f2cbadc75d1f63e589f/data/20261012_191604_00256_3wif2-e5d733e7-f0c6-4aef-a463-a3456fe264b9.parquet

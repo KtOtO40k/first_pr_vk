@@ -1,0 +1,44 @@
+ Container lh-minio Running 
+ Container lh-trino Running 
+ Container lh-catalog Running 
+ Container lh-catalog-db Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Waiting 
+ Container lh-minio-init Exited 
+ Container lh-catalog Healthy 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-2afd91f9c8a9 Creating 
+ Container lh-q18-tools-run-2afd91f9c8a9 Created 
+19:05:12 | сессионных свойств каталога lake: 46
+19:05:12 | Рабочая копия крупных заказов
+19:05:13 | Схема до изменений
+19:05:13 | Новая колонка
+19:05:13 | Переименование колонки
+19:05:13 | Расширение типа (суммы растут — DECIMAL(12,2) → DECIMAL(18,2))
+19:05:13 | Схема после изменений
+19:05:13 | Старые строки читаются по новой схеме
+19:05:13 | Заполняем новую колонку
+19:05:14 | Результат
+19:05:14 | Сбой ETL: обнулены суммы заказов 1995+ года
+19:05:14 | После сбоя приходит легитимный новый заказ
+19:05:15 | История снапшотов
+19:05:15 | Time Travel по id снапшота
+19:05:15 | Time Travel по времени
+19:05:15 | Возвращаем только испорченную колонку
+19:05:15 | Копия «как было» в отдельную таблицу (CTAS из снапшота)
+19:05:16 | Откат таблицы
+19:05:16 | История снапшотов
+19:05:16 | готово: good={'orders': 249, 'amount': Decimal('113403560.04'), 'zero_prices': 0} broken={'orders': 249, 'amount': Decimal('51052351.01'), 'zero_prices': 138} merged={'orders': 250, 'amount': Decimal('113527016.82'), 'zero_prices': 0} rollback={'orders': 249, 'amount': Decimal('113403560.04'), 'zero_prices': 0}

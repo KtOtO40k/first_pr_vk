@@ -1,0 +1,4 @@
+variant,format,codec,table,rows,files,size_bytes,size_mb,codec_in_file,container_in_file,blocks_in_file,checked_file
+ORC+SNAPPY,ORC,SNAPPY,customer,600000,1,44678542,44.679,SNAPPY,ORC,1,s3://lakehouse/wh/01a13192-9e83-7440-a8f3-24ab49de4f8f/customer-fa84bec8b9f7499d9bc0d76466c54a64/data/20261012_192625_00330_3wif2-71928d1b-e81a-4f84-83f9-5c10232952c2.orc
+ORC+SNAPPY,ORC,SNAPPY,orders,6000000,7,192139171,192.139,SNAPPY,ORC,2,s3://lakehouse/wh/01a13192-9e83-7440-a8f3-24ab49de4f8f/orders-0aa5dbe659374cfb88878498520fab13/data/20261012_192628_00332_3wif2-f49b9b95-eb82-4d4e-b403-96fed1cdb811.orc
+ORC+SNAPPY,ORC,SNAPPY,lineitem,23996604,12,911228311,911.228,SNAPPY,ORC,3,s3://lakehouse/wh/01a13192-9e83-7440-a8f3-24ab49de4f8f/lineitem-311cd49ed19443c797c626b86babbed3/data/20261012_192637_00334_3wif2-43486cf1-0cf3-46a0-9a4c-3256b58a2528.orc

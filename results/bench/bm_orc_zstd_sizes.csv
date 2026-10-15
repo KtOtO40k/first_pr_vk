@@ -1,0 +1,4 @@
+variant,format,codec,table,rows,files,size_bytes,size_mb,codec_in_file,container_in_file,blocks_in_file,checked_file
+ORC+ZSTD,ORC,ZSTD,customer,600000,1,29930009,29.93,ZSTD,ORC,1,s3://lakehouse/wh/01a13199-2a04-7221-96e7-0eae0812d1a6/customer-71d77e6a27ac43dba9606846584ac71a/data/20261012_193331_00382_3wif2-e0d5fd85-8857-46d8-a50f-f03ef28cf685.orc
+ORC+ZSTD,ORC,ZSTD,orders,6000000,7,139799194,139.799,ZSTD,ORC,1,s3://lakehouse/wh/01a13199-2a04-7221-96e7-0eae0812d1a6/orders-0f7f6eab86f64a0e8328b795a869fb98/data/20261012_193335_00384_3wif2-a8d72f53-a350-4a9b-a672-d06593207c70.orc
+ORC+ZSTD,ORC,ZSTD,lineitem,23996604,12,660826583,660.827,ZSTD,ORC,2,s3://lakehouse/wh/01a13199-2a04-7221-96e7-0eae0812d1a6/lineitem-bbb354194b9a4530b055c3c3086e5afe/data/20261012_193343_00386_3wif2-fd212cee-6d58-4872-a11b-d6357619244b.orc

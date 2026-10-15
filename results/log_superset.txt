@@ -1,0 +1,29 @@
+ Container lh-catalog-db Running 
+ Container lh-minio Running 
+ Container lh-trino Running 
+ Container lh-catalog Running 
+ Container lh-minio-init Starting 
+ Container lh-catalog-db Waiting 
+ Container lh-minio-init Started 
+ Container lh-catalog-db Healthy 
+ Container lh-catalog-migrate Starting 
+ Container lh-catalog-migrate Started 
+ Container lh-catalog-migrate Waiting 
+ Container lh-catalog-migrate Exited 
+ Container lh-minio-init Waiting 
+ Container lh-catalog Waiting 
+ Container lh-catalog Healthy 
+ Container lh-minio-init Exited 
+ Container lh-catalog-init Starting 
+ Container lh-catalog-init Started 
+ Container lh-catalog-init Waiting 
+ Container lh-catalog-init Exited 
+ Container lh-trino Waiting 
+ Container lh-trino Healthy 
+ Container lh-q18-tools-run-a3ddd7bec270 Creating 
+ Container lh-q18-tools-run-a3ddd7bec270 Created 
+19:48:23 | подключение к Trino: database id 1
+19:48:23 | SQL Lab: запрос к Bronze
+19:48:24 | → results/superset_bronze_query.json
+19:48:27 | → results/superset_setup.json
+19:48:27 | дашборд: http://superset:8088/superset/dashboard/1/ (admin / admin)

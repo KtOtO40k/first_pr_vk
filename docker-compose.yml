@@ -1,0 +1,164 @@
+# Lakehouse-стенд: практическая №1, вариант 3 — TPC-H Q18 «Large Volume Customer»
+#
+#   MinIO       — объектное хранилище S3 (данные и метаданные Iceberg)
+#   PostgreSQL  — база каталога Lakekeeper
+#   Lakekeeper  — Iceberg REST Catalog (warehouse "lakehouse")
+#   Trino       — SQL-движок, каталог "lake"
+#   tools       — Python-утилиты: ELT, бенчмарк, Iceberg-демо, отчёт (профиль tools)
+#   superset    — BI поверх Lakehouse (профиль bi)
+#
+#   docker compose up -d                      — основной стек
+#   docker compose --profile bi up -d superset — BI
+
+name: lh-q18
+
+x-catalog-db: &catalog-db
+  LAKEKEEPER__PG_DATABASE_URL_READ: postgresql://postgres:${PG_PASSWORD}@catalog-db:5432/postgres
+  LAKEKEEPER__PG_DATABASE_URL_WRITE: postgresql://postgres:${PG_PASSWORD}@catalog-db:5432/postgres
+  LAKEKEEPER__PG_ENCRYPTION_KEY: ${LAKEKEEPER_ENCRYPTION_KEY}
+  LAKEKEEPER__AUTHZ_BACKEND: allowall
+
+services:
+  object-store:
+    image: ${MINIO_IMAGE}
+    container_name: lh-minio
+    environment:
+      MINIO_ROOT_USER: ${S3_USER}
+      MINIO_ROOT_PASSWORD: ${S3_PASSWORD}
+      MINIO_DEFAULT_BUCKETS: lakehouse
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - s3-data:/bitnami/minio/data
+
+  # создаёт бакет, если образ не сделал это сам (MINIO_DEFAULT_BUCKETS); mc берётся из того же образа
+  object-store-init:
+    image: ${MINIO_IMAGE}
+    container_name: lh-minio-init
+    depends_on: [object-store]
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >
+        for i in $$(seq 1 60); do
+          mc alias set lh http://object-store:9000 ${S3_USER} ${S3_PASSWORD} >/dev/null 2>&1 && break;
+          echo "ждём MinIO ($$i)"; sleep 2;
+        done;
+        mc mb --ignore-existing lh/lakehouse && mc ls lh
+
+  catalog-db:
+    image: ${POSTGRES_IMAGE}
+    container_name: lh-catalog-db
+    environment:
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    volumes:
+      - catalog-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 3s
+      retries: 30
+
+  catalog-migrate:
+    image: ${LAKEKEEPER_IMAGE}
+    container_name: lh-catalog-migrate
+    environment: *catalog-db
+    command: ["migrate"]
+    depends_on:
+      catalog-db: {condition: service_healthy}
+
+  catalog:
+    image: ${LAKEKEEPER_IMAGE}
+    container_name: lh-catalog
+    environment: *catalog-db
+    command: ["serve"]
+    ports:
+      - "8181:8181"
+    depends_on:
+      catalog-migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: ["CMD", "/home/nonroot/lakekeeper", "healthcheck"]
+      interval: 3s
+      retries: 30
+      start_period: 5s
+
+  # bootstrap каталога и регистрация warehouse "lakehouse" поверх бакета MinIO
+  catalog-init:
+    image: ${CURL_IMAGE}
+    container_name: lh-catalog-init
+    depends_on:
+      catalog: {condition: service_healthy}
+      object-store-init: {condition: service_completed_successfully}
+    volumes:
+      - ./conf/lakekeeper/warehouse.json:/cfg/warehouse.json:ro
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >
+        curl -s -o /dev/null -w 'bootstrap: HTTP %{http_code}\n' -X POST http://catalog:8181/management/v1/bootstrap
+        -H 'Content-Type: application/json' -d '{"accept-terms-of-use": true}';
+        curl -s -w '\nwarehouse: HTTP %{http_code}\n' -X POST http://catalog:8181/management/v1/warehouse
+        -H 'Content-Type: application/json' -d @/cfg/warehouse.json;
+        echo '(409/400 при повторном запуске = уже создано)'
+
+  trino:
+    image: ${TRINO_IMAGE}
+    container_name: lh-trino
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./conf/trino/catalog:/etc/trino/catalog:ro
+      - ./conf/trino/config.properties:/etc/trino/config.properties:ro
+    depends_on:
+      catalog-init: {condition: service_completed_successfully}
+
+  tools:
+    build: ./tools
+    image: lh-q18-tools:1.0
+    container_name: lh-tools
+    profiles: ["tools"]
+    working_dir: /repo
+    volumes:
+      - ./:/repo
+    environment:
+      TRINO_URL: http://trino:8080
+      S3_ENDPOINT: object-store:9000
+      S3_USER: ${S3_USER}
+      S3_PASSWORD: ${S3_PASSWORD}
+      SCALE: ${SCALE}
+      WRITE_REPEATS: ${WRITE_REPEATS}
+      READ_REPEATS: ${READ_REPEATS}
+      SUPERSET_URL: http://superset:8088
+    depends_on:
+      trino: {condition: service_healthy}
+
+  superset:
+    build: ./conf/superset
+    image: lh-q18-superset:4.1.2
+    container_name: lh-superset
+    profiles: ["bi"]
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./conf/superset/superset_config.py:/app/pythonpath/superset_config.py:ro
+      - superset-home:/app/superset_home
+    command:
+      - /bin/bash
+      - -c
+      - >
+        superset db upgrade &&
+        (superset fab create-admin --username admin --firstname Lab --lastname Admin
+        --email admin@lab.local --password admin || true) &&
+        superset init &&
+        superset set-database-uri -d 'Lakehouse (Trino)' -u 'trino://superset@trino:8080/lake' &&
+        /usr/bin/run-server.sh
+    depends_on:
+      trino: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8088/health || exit 1"]
+      interval: 10s
+      retries: 30
+      start_period: 60s
+
+volumes:
+  s3-data:
+  catalog-db:
+  superset-home:

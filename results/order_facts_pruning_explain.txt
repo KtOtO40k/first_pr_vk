@@ -1,0 +1,100 @@
+-- Пропуск row group в lake.silver.order_facts (sorted_by total_quantity) по фильтру Q18
+-- EXPLAIN ANALYZE SELECT count(*), max(total_quantity) FROM lake.silver.order_facts WHERE total_quantity > 300;
+                                                                                      Query Plan
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Trino version: 476
+ Queued: 767.56us, Analysis: 10.81ms, Planning: 19.67ms, Execution: 201.11ms
+ Fragment 1 [SINGLE]
+     CPU: 2.43ms, Scheduled: 4.43ms, Blocked 552.29ms (Input: 488.79ms, Output: 0.00ns), Input: 33 rows (594B); per task: avg.: 33.00 std.dev.: 0.00, Output: 1 row (18B)
+     Peak Memory: 528B, Tasks count: 1; per task: max: 528B
+     Output layout: [count, max]
+     Output partitioning: SINGLE []
+     Aggregate[type = FINAL]
+     │   Layout: [count:bigint, max:decimal(15,2)]
+     │   Estimates: {rows: 1 (18B), cpu: 8.82M, memory: 18B, network: 0B}
+     │   CPU: 1.00ms (0.45%), Scheduled: 1.00ms (0.19%), Blocked: 0.00ns (0.00%), Output: 1 row (18B)
+     │   Input avg.: 33.00 rows, Input std.dev.: 0.00%
+     │   count := count(count_0)
+     │   max := max(max_1)
+     └─ LocalExchange[partitioning = SINGLE]
+        │   Layout: [count_0:bigint, max_1:decimal(15,2)]
+        │   Estimates: {rows: 513761 (8.82MB), cpu: 0, memory: 0B, network: 0B}
+        │   CPU: 0.00ns (0.00%), Scheduled: 0.00ns (0.00%), Blocked: 64.00ms (11.57%), Output: 33 rows (594B)
+        │   Input avg.: 4.13 rows, Input std.dev.: 76.12%
+        └─ RemoteSource[sourceFragmentIds = [2]]
+               Layout: [count_0:bigint, max_1:decimal(15,2)]
+               CPU: 0.00ns (0.00%), Scheduled: 0.00ns (0.00%), Blocked: 489.00ms (88.43%), Output: 33 rows (594B)
+               Input avg.: 4.13 rows, Input std.dev.: 76.12%
+
+ Fragment 2 [SOURCE]
+     CPU: 219.36ms, Scheduled: 523.74ms, Blocked 0.00ns (Input: 0.00ns, Output: 0.00ns), Input: 738263 rows (6.34MB); per task: avg.: 738263.00 std.dev.: 0.00, Output: 33 rows (594B)
+     Peak Memory: 1.76kB, Tasks count: 1; per task: max: 2.10kB
+     Output layout: [count_0, max_1]
+     Output partitioning: SINGLE []
+     Aggregate[type = PARTIAL]
+     │   Layout: [count_0:bigint, max_1:decimal(15,2)]
+     │   Estimates: {rows: 513761 (8.82MB), cpu: ?, memory: ?, network: ?}
+     │   CPU: 3.00ms (1.36%), Scheduled: 3.00ms (0.57%), Blocked: 0.00ns (0.00%), Output: 33 rows (594B)
+     │   Input avg.: 7.55 rows, Input std.dev.: 287.13%
+     │   count_0 := count(*)
+     │   max_1 := max(total_quantity)
+     └─ ScanFilter[table = lake:silver.order_facts$data@2911442375618826068, filterPredicate = (total_quantity > decimal(15,2) '300.00')]
+            Layout: [total_quantity:decimal(15,2)]
+            Estimates: {rows: 6000000 (51.50MB), cpu: 51.50M, memory: 0B, network: 0B}/{rows: 513761 (4.41MB), cpu: 51.50M, memory: 0B, network: 0B}
+            CPU: 216.00ms (98.18%), Scheduled: 520.00ms (99.24%), Blocked: 0.00ns (0.00%), Output: 249 rows (2.19kB)
+            Input avg.: 22371.61 rows, Input std.dev.: 222.25%
+            total_quantity := 9:total_quantity:decimal(15,2)
+            Input: 738263 rows (6.34MB), Filtered: 99.97%, Physical input: 1.68MB, Physical input time: 85.17ms, Splits: 33, Splits generation wait time: 4.89ms
+
+
+(1 row)
+
+-- то же по таблице без сортировки (lake.bm_layout.order_facts_unsorted)
+                                                                                      Query Plan
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Trino version: 476
+ Queued: 212.19us, Analysis: 6.00ms, Planning: 11.44ms, Execution: 237.32ms
+ Fragment 1 [SINGLE]
+     CPU: 4.13ms, Scheduled: 5.97ms, Blocked 826.46ms (Input: 726.72ms, Output: 0.00ns), Input: 35 rows (630B); per task: avg.: 35.00 std.dev.: 0.00, Output: 1 row (18B)
+     Peak Memory: 528B, Tasks count: 1; per task: max: 528B
+     Output layout: [count, max]
+     Output partitioning: SINGLE []
+     Aggregate[type = FINAL]
+     │   Layout: [count:bigint, max:decimal(15,2)]
+     │   Estimates: {rows: 1 (18B), cpu: 8.82M, memory: 18B, network: 0B}
+     │   CPU: 1.00ms (0.37%), Scheduled: 2.00ms (0.10%), Blocked: 0.00ns (0.00%), Output: 1 row (18B)
+     │   Input avg.: 35.00 rows, Input std.dev.: 0.00%
+     │   count := count(count_0)
+     │   max := max(max_1)
+     └─ LocalExchange[partitioning = SINGLE]
+        │   Layout: [count_0:bigint, max_1:decimal(15,2)]
+        │   Estimates: {rows: 513761 (8.82MB), cpu: 0, memory: 0B, network: 0B}
+        │   CPU: 0.00ns (0.00%), Scheduled: 1.00ms (0.05%), Blocked: 100.00ms (12.09%), Output: 35 rows (630B)
+        │   Input avg.: 4.38 rows, Input std.dev.: 73.12%
+        └─ RemoteSource[sourceFragmentIds = [2]]
+               Layout: [count_0:bigint, max_1:decimal(15,2)]
+               CPU: 1.00ms (0.37%), Scheduled: 1.00ms (0.05%), Blocked: 727.00ms (87.91%), Output: 35 rows (630B)
+               Input avg.: 4.38 rows, Input std.dev.: 73.12%
+
+ Fragment 2 [SOURCE]
+     CPU: 273.08ms, Scheduled: 2.03s, Blocked 0.00ns (Input: 0.00ns, Output: 0.00ns), Input: 6000000 rows (51.50MB); per task: avg.: 6000000.00 std.dev.: 0.00, Output: 35 rows (630B)
+     Peak Memory: 1.72kB, Tasks count: 1; per task: max: 1.72kB
+     Output layout: [count_0, max_1]
+     Output partitioning: SINGLE []
+     Aggregate[type = PARTIAL]
+     │   Layout: [count_0:bigint, max_1:decimal(15,2)]
+     │   Estimates: {rows: 513761 (8.82MB), cpu: ?, memory: ?, network: ?}
+     │   CPU: 8.00ms (2.93%), Scheduled: 8.00ms (0.39%), Blocked: 0.00ns (0.00%), Output: 35 rows (630B)
+     │   Input avg.: 7.11 rows, Input std.dev.: 43.26%
+     │   count_0 := count(*)
+     │   max_1 := max(total_quantity)
+     └─ ScanFilter[table = lake:bm_layout.order_facts_unsorted$data@508719916500251085, filterPredicate = (total_quantity > decimal(15,2) '300.00')]
+            Layout: [total_quantity:decimal(15,2)]
+            Estimates: {rows: 6000000 (51.50MB), cpu: 51.50M, memory: 0B, network: 0B}/{rows: 513761 (4.41MB), cpu: 51.50M, memory: 0B, network: 0B}
+            CPU: 263.00ms (96.34%), Scheduled: 2.02s (99.41%), Blocked: 0.00ns (0.00%), Output: 249 rows (2.19kB)
+            Input avg.: 171428.57 rows, Input std.dev.: 24.47%
+            total_quantity := 9:total_quantity:decimal(15,2)
+            Input: 6000000 rows (51.50MB), Filtered: 100.00%, Physical input: 9.80MB, Physical input time: 1.71s, Splits: 35, Splits generation wait time: 6.55ms
+
+
+(1 row)

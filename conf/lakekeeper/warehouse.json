@@ -1,0 +1,20 @@
+{
+  "warehouse-name": "lakehouse",
+  "storage-profile": {
+    "type": "s3",
+    "bucket": "lakehouse",
+    "key-prefix": "wh",
+    "assume-role-arn": null,
+    "endpoint": "http://object-store:9000",
+    "region": "us-east-1",
+    "path-style-access": true,
+    "flavor": "minio",
+    "sts-enabled": false
+  },
+  "storage-credential": {
+    "type": "s3",
+    "credential-type": "access-key",
+    "aws-access-key-id": "lakeadmin",
+    "aws-secret-access-key": "lakeadmin-secret"
+  }
+}

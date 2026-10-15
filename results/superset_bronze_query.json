@@ -1,0 +1,22 @@
+{
+  "sql": "SELECT size_class, count(*) AS orders FROM (\n  SELECT orderkey, CASE WHEN sum(quantity) > 300 THEN 'крупный (> 300)'\n                        WHEN sum(quantity) > 200 THEN 'большой (201–300)'\n                        ELSE 'обычный (≤ 200)' END AS size_class\n  FROM lake.bronze.lineitem GROUP BY orderkey) t\nGROUP BY size_class ORDER BY orders DESC",
+  "seconds": 1.68,
+  "columns": [
+    "size_class",
+    "orders"
+  ],
+  "data": [
+    {
+      "size_class": "обычный (≤ 200)",
+      "orders": 5667008
+    },
+    {
+      "size_class": "большой (201–300)",
+      "orders": 332743
+    },
+    {
+      "size_class": "крупный (> 300)",
+      "orders": 249
+    }
+  ]
+}

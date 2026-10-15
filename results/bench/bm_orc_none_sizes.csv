@@ -1,0 +1,4 @@
+variant,format,codec,table,rows,files,size_bytes,size_mb,codec_in_file,container_in_file,blocks_in_file,checked_file
+ORC+NONE,ORC,NONE,customer,600000,1,86370979,86.371,UNCOMPRESSED,ORC,2,s3://lakehouse/wh/01a1318f-40b3-7890-97f9-f6bd7506cbde/customer-61ad1d7c28bd43e7b12114cab8a08e62/data/20261012_192300_00304_3wif2-29cc90c2-0eef-470b-b8a9-8a76198b14dd.orc
+ORC+NONE,ORC,NONE,orders,6000000,7,405951889,405.952,UNCOMPRESSED,ORC,3,s3://lakehouse/wh/01a1318f-40b3-7890-97f9-f6bd7506cbde/orders-c5f2eb3f56d4402b8df69d7ff40c2454/data/20261012_192304_00306_3wif2-2cca2edb-da87-436b-bc6a-04df5df7f48b.orc
+ORC+NONE,ORC,NONE,lineitem,23996604,12,1838336960,1838.337,UNCOMPRESSED,ORC,5,s3://lakehouse/wh/01a1318f-40b3-7890-97f9-f6bd7506cbde/lineitem-a64914159c2a459f90af9d66679c5cd4/data/20261012_192313_00308_3wif2-ac3f1630-ebf0-47a8-8cf9-5de942eae236.orc

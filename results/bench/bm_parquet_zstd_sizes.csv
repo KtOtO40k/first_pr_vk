@@ -1,0 +1,4 @@
+variant,format,codec,table,rows,files,size_bytes,size_mb,codec_in_file,container_in_file,blocks_in_file,checked_file
+PARQUET+ZSTD,PARQUET,ZSTD,customer,600000,1,32620013,32.62,ZSTD,PARQUET,1,s3://lakehouse/wh/01a1318c-29f8-7d40-a47e-b37952bcd875/customer-d36f07996a5e476295f88fdbc44c838e/data/20261012_191921_00278_3wif2-685507ac-1a42-4426-b8c3-66060d9de476.parquet
+PARQUET+ZSTD,PARQUET,ZSTD,orders,6000000,7,152475480,152.475,ZSTD,PARQUET,1,s3://lakehouse/wh/01a1318c-29f8-7d40-a47e-b37952bcd875/orders-6ee23cb2db72494e8e6799acd7b31eb5/data/20261012_191927_00280_3wif2-40262473-bb6b-4412-83f7-d27a0fe789b9.parquet
+PARQUET+ZSTD,PARQUET,ZSTD,lineitem,23996604,12,623343522,623.344,ZSTD,PARQUET,1,s3://lakehouse/wh/01a1318c-29f8-7d40-a47e-b37952bcd875/lineitem-b1e6d555cd3a4be786781f7c25adabdd/data/20261012_191936_00282_3wif2-5db2b734-6357-4eb1-a20b-294d4ae208e9.parquet
